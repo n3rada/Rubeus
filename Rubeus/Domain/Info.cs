@@ -20,9 +20,10 @@ namespace Rubeus.Domain
                 string usage = @"
  Ticket requests and renewals:
 
-    Note: /kdcopts overrides the default KDC request options (KDCOptions) for asktgt/asktgs/renew. Supply a comma-separated list of flag
-          names (forwardable,renewable,canonicalize,renewable-ok,enc-tkt-in-skey,...) or a single hex mask (e.g. 0x40810010). When omitted,
-          Rubeus keeps its existing defaults. Reference: [MS-KILE] Request Flags Details / RFC 4120 section 5.4.1.
+    Note: /kdcopts replaces the default KDC request options (KDCOptions) for asktgt/asktgs/renew. Request-specific logic may still add,
+          remove, or replace flags; Rubeus prints the final options sent. Supply comma-separated flag names (forwardable,renewable,
+          canonicalize,renewable-ok,enc-tkt-in-skey,...) or a single hex mask (e.g. 0x40810010). When omitted, existing defaults apply.
+          Reference: [MS-KILE] Request Flags Details / RFC 4120 section 5.4.1.
 
     Retrieve a TGT based on a user password/hash, optionally saving to a file or applying to the current logon session or a specific LUID:
         Rubeus.exe asktgt /user:USER </password:PASSWORD [/enctype:DES|RC4|AES128|AES256] | /des:HASH | /rc4:HASH | /aes128:HASH | /aes256:HASH> [/domain:DOMAIN] [/dc:DOMAIN_CONTROLLER] [/outfile:FILENAME] [/ptt] [/luid] [/nowrap] [/opsec] [/nopac] [/oldsam] [/proxyurl:https://KDC_PROXY/kdcproxy] [/suppenctype:DES|RC4|AES128|AES256] [/principaltype:principal|enterprise|x500|srv_xhost|srv_host|srv_inst] [/kdcopts:KDC_OPTIONS]
